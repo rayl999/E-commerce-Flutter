@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shop_app/services/productRemote.dart';
-
-import '../../../models2/product.dart';
+import 'package:shop_app/services/categoryRemote.dart';
+import '../../../models2/Category.dart';
 import '../../../size_config.dart';
 
 class Categories extends StatefulWidget {
@@ -11,13 +10,12 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> {
-
-  Product? product;
+  Category? category;
   bool isLoaded = false;
 
   getData() async {
-    product = await ProductRemote().getProduct();
-    if (product != null) {
+    category = await CategoryRemote().getCat();
+    if (category != null) {
       setState(() {
         isLoaded = true;
       });
@@ -32,8 +30,6 @@ class _CategoriesState extends State<Categories> {
       super.initState();
       getData();
     }
-
-
 
     List<Map<String, dynamic>> categories = [
       {"icon": "assets/icons/Flash Icon.svg", "text": "Flash Deal"},
