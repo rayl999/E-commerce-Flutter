@@ -15,5 +15,6 @@ class CategoryRemote {
       var json = response.body;
       return categoryFromJson(json);
     }
+    return null;
   }
 }

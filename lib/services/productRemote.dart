@@ -13,5 +13,6 @@ class ProductRemote {
       var json = response.body;
       return productFromJson(json);
     }
+    return null;
   }
 }
