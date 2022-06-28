@@ -58,11 +58,11 @@ class _BodyState extends State<Body> {
         child: Column(
           children: [
             SizedBox(height: getProportionateScreenHeight(20)),
-            HomeHeader(),
+            const HomeHeader(),
             SizedBox(height: getProportionateScreenWidth(10)),
-            DiscountBanner(),
+            const DiscountBanner(),
             Categories(category!.categories),
-            SpecialOffers(),
+            const SpecialOffers(),
             SizedBox(height: getProportionateScreenWidth(30)),
             PopularProducts(product!.products),
             SizedBox(height: getProportionateScreenWidth(30)),

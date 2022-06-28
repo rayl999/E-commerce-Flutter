@@ -5,7 +5,7 @@ import '../../../size_config.dart';
 
 class Categories extends StatelessWidget {
   List<CategoryElement>? category;
-  Categories(this.category);
+  Categories(this.category, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     /*List<Map<String, dynamic>> categories = [
@@ -61,12 +61,12 @@ class CategoryCard extends StatelessWidget {
               height: getProportionateScreenWidth(55),
               width: getProportionateScreenWidth(55),
               decoration: BoxDecoration(
-                color: Color(0xFFFFECDF),
+                color: const Color(0xFFFFECDF),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: SvgPicture.asset(icon!),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Text(text!, textAlign: TextAlign.center)
           ],
         ),
