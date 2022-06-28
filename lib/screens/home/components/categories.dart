@@ -1,11 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shop_app/services/productRemote.dart';
 
+import '../../../models2/product.dart';
 import '../../../size_config.dart';
 
-class Categories extends StatelessWidget {
+class Categories extends StatefulWidget {
+  @override
+  State<Categories> createState() => _CategoriesState();
+}
+
+class _CategoriesState extends State<Categories> {
+
+  Product? product;
+  bool isLoaded = false;
+
+  getData() async {
+    product = await ProductRemote().getProduct();
+    if (product != null) {
+      setState(() {
+        isLoaded = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    @override
+    void initState() {
+      // TODO: implement initState
+      super.initState();
+      getData();
+    }
+
+
+
     List<Map<String, dynamic>> categories = [
       {"icon": "assets/icons/Flash Icon.svg", "text": "Flash Deal"},
       {"icon": "assets/icons/Bill Icon.svg", "text": "Bill"},
