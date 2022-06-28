@@ -12,6 +12,8 @@ import 'popular_product.dart';
 import 'special_offers.dart';
 
 class Body extends StatefulWidget {
+  const Body({Key? key}) : super(key: key);
+
   @override
   State<Body> createState() => _BodyState();
 }

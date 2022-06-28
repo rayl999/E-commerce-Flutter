@@ -13,11 +13,12 @@ class ProductImages extends StatefulWidget {
   final Product product;
 
   @override
-  _ProductImagesState createState() => _ProductImagesState();
+  ProductImagesState createState() => ProductImagesState();
 }
 
-class _ProductImagesState extends State<ProductImages> {
+class ProductImagesState extends State<ProductImages> {
   int selectedImage = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(

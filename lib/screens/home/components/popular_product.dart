@@ -8,7 +8,7 @@ import 'section_title.dart';
 
 class PopularProducts extends StatelessWidget {
   List<ProductElement> products;
-  PopularProducts(this.products);
+  PopularProducts(this.products, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,10 +26,11 @@ class PopularProducts extends StatelessWidget {
               ...List.generate(
                 demoProducts.length,
                 (index) {
-                  if (demoProducts[index].isPopular)
+                  if (demoProducts[index].isPopular) {
                     return ProductCard(product: demoProducts[index]);
+                  }
 
-                  return SizedBox
+                  return const SizedBox
                       .shrink(); // here by default width and height is 0
                 },
               ),

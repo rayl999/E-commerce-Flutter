@@ -11,10 +11,10 @@ class CompleteProfileForm extends StatefulWidget {
   const CompleteProfileForm({Key? key}) : super(key: key);
 
   @override
-  _CompleteProfileFormState createState() => _CompleteProfileFormState();
+  CompleteProfileFormState createState() => CompleteProfileFormState();
 }
 
-class _CompleteProfileFormState extends State<CompleteProfileForm> {
+class CompleteProfileFormState extends State<CompleteProfileForm> {
   final _formKey = GlobalKey<FormState>();
   final List<String?> errors = [];
   String? firstName;

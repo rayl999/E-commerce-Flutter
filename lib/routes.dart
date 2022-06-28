@@ -15,15 +15,15 @@ import 'screens/sign_up/sign_up_screen.dart';
 // We use name route
 // All our routes will be available here
 final Map<String, WidgetBuilder> routes = {
-  SplashScreen.routeName: (context) => SplashScreen(),
-  SignInScreen.routeName: (context) => SignInScreen(),
+  SplashScreen.routeName: (context) => const SplashScreen(),
+  SignInScreen.routeName: (context) => const SignInScreen(),
   ForgotPasswordScreen.routeName: (context) => const ForgotPasswordScreen(),
-  LoginSuccessScreen.routeName: (context) => LoginSuccessScreen(),
+  LoginSuccessScreen.routeName: (context) => const LoginSuccessScreen(),
   SignUpScreen.routeName: (context) => const SignUpScreen(),
   CompleteProfileScreen.routeName: (context) => const CompleteProfileScreen(),
-  OtpScreen.routeName: (context) => OtpScreen(),
-  HomeScreen.routeName: (context) => HomeScreen(),
+  OtpScreen.routeName: (context) => const OtpScreen(),
+  HomeScreen.routeName: (context) => const HomeScreen(),
   DetailsScreen.routeName: (context) => const DetailsScreen(),
   CartScreen.routeName: (context) => const CartScreen(),
-  ProfileScreen.routeName: (context) => ProfileScreen(),
+  ProfileScreen.routeName: (context) => const ProfileScreen(),
 };

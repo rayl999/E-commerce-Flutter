@@ -9,10 +9,10 @@ class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
   @override
-  _BodyState createState() => _BodyState();
+  BodyState createState() => BodyState();
 }
 
-class _BodyState extends State<Body> {
+class BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return Padding(

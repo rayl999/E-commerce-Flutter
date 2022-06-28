@@ -13,10 +13,10 @@ class SignForm extends StatefulWidget {
   const SignForm({Key? key}) : super(key: key);
 
   @override
-  _SignFormState createState() => _SignFormState();
+  SignFormState createState() => SignFormState();
 }
 
-class _SignFormState extends State<SignForm> {
+class SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
