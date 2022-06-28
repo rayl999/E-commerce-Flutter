@@ -1,43 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shop_app/services/categoryRemote.dart';
+import 'package:get/get.dart';
 import '../../../models2/Category.dart';
 import '../../../size_config.dart';
 
-class Categories extends StatefulWidget {
-  @override
-  State<Categories> createState() => _CategoriesState();
-}
-
-class _CategoriesState extends State<Categories> {
-  Category? category;
-  bool isLoaded = false;
-
-  getData() async {
-    category = await CategoryRemote().getCat();
-    if (category != null) {
-      setState(() {
-        isLoaded = true;
-      });
-    }
-  }
-
+class Categories extends StatelessWidget {
+  List<CategoryElement>? category;
+  Categories(this.category);
   @override
   Widget build(BuildContext context) {
-    @override
-    void initState() {
-      // TODO: implement initState
-      super.initState();
-      getData();
-    }
-
-    List<Map<String, dynamic>> categories = [
+    /*List<Map<String, dynamic>> categories = [
       {"icon": "assets/icons/Flash Icon.svg", "text": "Flash Deal"},
       {"icon": "assets/icons/Bill Icon.svg", "text": "Bill"},
       {"icon": "assets/icons/Game Icon.svg", "text": "Game"},
       {"icon": "assets/icons/Gift Icon.svg", "text": "Daily Gift"},
       {"icon": "assets/icons/Discover.svg", "text": "More"},
-    ];
+    ];*/
+    List<Map<String, dynamic>> categories = [];
+    for(CategoryElement x in category!){
+      categories.add({"icon":"assets/icons/Flash Icon.svg","text":"${x.name}"});
+    }
     return Padding(
       padding: EdgeInsets.all(getProportionateScreenWidth(20)),
       child: Row(

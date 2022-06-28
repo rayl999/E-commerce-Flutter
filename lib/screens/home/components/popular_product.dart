@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/components/product_card.dart';
 import 'package:shop_app/models/Product.dart';
 
+import '../../../models2/product.dart';
 import '../../../size_config.dart';
 import 'section_title.dart';
 
 class PopularProducts extends StatelessWidget {
+  List<ProductElement> products;
+  PopularProducts(this.products);
   @override
   Widget build(BuildContext context) {
     return Column(

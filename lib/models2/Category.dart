@@ -13,9 +13,7 @@ class Category {
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
         categories: List<CategoryElement>.from(
-            json["categories"].map((x) {
-              print(x);
-              return CategoryElement.fromJson(x);})),
+            json["categories"].map((x) => CategoryElement.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -79,7 +77,7 @@ class CategoryElement {
   factory CategoryElement.fromJson(Map<String, dynamic> json) =>
       CategoryElement(
         name: json["name"],
-        description: json["description"]??"",
+        description: json["description"] ?? "",
         /*categoryTemplateId: json["category_template_id"],
         metaKeywords: json["meta_keywords"],
         metaDescription: json["meta_description"],
@@ -100,7 +98,7 @@ class CategoryElement {
         discountIds: List<int>.from(json["discount_ids"].map((x) => x)),
         storeIds: List<int>.from(json["store_ids"].map((x) => x)),
         image: Image.fromJson(json["image"]),*/
-        seName: json["se_name"]??"",
+        seName: json["se_name"] ?? "",
         id: json["id"],
       );
 
