@@ -5,7 +5,9 @@ import '../../../size_config.dart';
 
 class Categories extends StatelessWidget {
   List<CategoryElement>? category;
+
   Categories(this.category, {Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     /*List<Map<String, dynamic>> categories = [
@@ -16,8 +18,9 @@ class Categories extends StatelessWidget {
       {"icon": "assets/icons/Discover.svg", "text": "More"},
     ];*/
     List<Map<String, dynamic>> categories = [];
-    for(CategoryElement x in category!){
-      categories.add({"icon":"assets/icons/Flash Icon.svg","text":"${x.name}"});
+    for (CategoryElement x in category!) {
+      categories
+          .add({"icon": "assets/icons/Flash Icon.svg", "text": "${x.name}"});
     }
     return Padding(
       padding: EdgeInsets.all(getProportionateScreenWidth(20)),

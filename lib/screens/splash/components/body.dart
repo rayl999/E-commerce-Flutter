@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/constants.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
 import 'package:shop_app/size_config.dart';
-
-// This is the best practice
 import '../components/splash_content.dart';
 import '../../../components/default_button.dart';
 
@@ -31,6 +29,7 @@ class BodyState extends State<Body> {
       "image": "assets/images/splash_3.png"
     },
   ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

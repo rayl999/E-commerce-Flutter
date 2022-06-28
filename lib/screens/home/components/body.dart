@@ -19,7 +19,6 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-
   Category? category;
   bool isLoaded = false;
 
@@ -39,18 +38,15 @@ class _BodyState extends State<Body> {
     if (category != null) {
       setState(() {
         isLoaded = true;
-
       });
     }
     if (product != null) {
       setState(() {
         isLoaded2 = true;
-
       });
     }
     /*List<CategoryElement>? v = category!.categories;
     List<ProductElement> t = product!.products;*/
-
   }
 
   @override
