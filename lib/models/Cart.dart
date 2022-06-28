@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'Product.dart';
 import 'Product.dart';
 
 class Cart {
@@ -9,8 +6,6 @@ class Cart {
 
   Cart({required this.product, required this.numOfItem});
 }
-
-// Demo data for our cart
 
 List<Cart> demoCarts = [
   Cart(product: demoProducts[0], numOfItem: 2),
