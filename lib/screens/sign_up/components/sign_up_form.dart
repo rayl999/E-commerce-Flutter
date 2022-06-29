@@ -2,14 +2,18 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/components/form_error.dart';
+import 'package:shop_app/models2/customer.dart';
 import 'package:shop_app/screens/complete_profile/complete_profile_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/splash/splash_screen.dart';
 
 import '../../../constants.dart';
+import '../../../helper/keyboard.dart';
+import '../../../services/checkCustomerRemote.dart';
 import '../../../size_config.dart';
 import 'package:http/http.dart' as http;
 
@@ -44,8 +48,15 @@ class SignUpFormState extends State<SignUpForm> {
     }
   }
 
+  List<CustomerElement> customers = [];
+
+  getData() async {
+    customers = await CheckCustomerRemote().checkUser() ?? [];
+  }
+
   @override
   Widget build(BuildContext context) {
+    getData();
     return Form(
       key: _formKey,
       child: Column(
@@ -59,12 +70,20 @@ class SignUpFormState extends State<SignUpForm> {
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
             text: "Continue",
-            press: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                // if all are valid then go to success screen
+            press: () async {
+              //if (_formKey.currentState!.validate()) {}
+              _formKey.currentState!.save();
+              bool isExist = false;
+              KeyboardUtil.hideKeyboard(context);
+              for (var xxx in customers) {
+                if (xxx.email == email) {
+                  showToast("already exist",
+                      context: context, animation: StyledToastAnimation.scale);
+                  isExist = true;
+                }
+              }
+              if (!isExist) {
                 register();
-                // Navigator.pushNamed(context, CompleteProfileScreen.routeName);
               }
             },
           ),
@@ -73,24 +92,12 @@ class SignUpFormState extends State<SignUpForm> {
     );
   }
 
-  exists() async {
-    http.Client clint = http.Client();
-    Uri url = Uri.parse(
-        'https://localhost:61382/api/customers/search?Query=email:$email');
-
-    http.Response response = await clint.post(url, headers: {
-      "Authorization":
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOiIxNjU2NDk4MzUzIiwiZXhwIjoiMTY4ODAzNDM1MyIsIkN1c3RvbWVySWQiOiIzNiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOWE3ZjkwMzMtNjM1ZS00OGI4LWFkYTEtYTU3MzA5MDlhYmI1In0.m1fSzNyqkU0a6VwXD4T637E0FR54NgniseebGRk53P8"
-    });
-    if (response.statusCode != 200) {
-      register();
-    }
-    Navigator.pushNamed(context, SplashScreen.routeName);
-  }
-
   register() async {
     http.Client clint = http.Client();
-    Uri url = Uri.parse('https://localhost:61382/api/customers');
+    var ahmadToken =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOiIxNjU2NTE5NzMyIiwiZXhwIjoiMTcyNTAzNDkzMiIsIkN1c3RvbWVySWQiOiIxIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiJkODEyZjhlZi00YWNmLTRlMTUtODQwNy0yN2EwN2UxYTUwMjkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJhZG1pbkBhZG1pbi5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW5AYWRtaW4uY29tIn0.fpOFHW3naEMWNtO-biQd9bipjUg27TxjAFM6f7xeAEI";
+
+    Uri url = Uri.parse('https://localhost:5001/api/customers');
 
     Map data = {
       'email': email,
@@ -101,16 +108,14 @@ class SignUpFormState extends State<SignUpForm> {
     String body = json.encode(customer);
 
     http.Response response = await clint.post(url,
-        headers: {
-          "Authorization":
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOiIxNjU2NDk4MzUzIiwiZXhwIjoiMTY4ODAzNDM1MyIsIkN1c3RvbWVySWQiOiIzNiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOWE3ZjkwMzMtNjM1ZS00OGI4LWFkYTEtYTU3MzA5MDlhYmI1In0.m1fSzNyqkU0a6VwXD4T637E0FR54NgniseebGRk53P8"
-        },
-        body: body);
+        headers: {"Authorization": "Bearer $ahmadToken"}, body: body);
+
     if (response.statusCode == 200) {
-      var json = response.body;
-      Navigator.pushNamed(context, HomeScreen.routeName);
+      Navigator.pushNamed(context, SplashScreen.routeName);
+    } else {
+      showToast("can not add now",
+          context: context, animation: StyledToastAnimation.scale);
     }
-    Navigator.pushNamed(context, SplashScreen.routeName);
   }
 
   TextFormField buildConformPassFormField() {
