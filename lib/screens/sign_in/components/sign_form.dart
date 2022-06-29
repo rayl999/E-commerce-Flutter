@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/form_error.dart';
 import 'package:shop_app/helper/keyboard.dart';
+import 'package:shop_app/models2/token.dart';
 import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:shop_app/screens/login_success/login_success_screen.dart';
+import 'package:shop_app/services/loginRemote.dart';
 
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
@@ -76,13 +78,20 @@ class SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Continue",
-            press: () {
-              if (_formKey.currentState!.validate()) {
+            press: () async{
+              _formKey.currentState!.save();
+              Token t = await LoginRemote().getAccess(email,password);
+              print(t.customerId);
+              if(t.accessToken!.isNotEmpty){
+                KeyboardUtil.hideKeyboard(context);
+                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+              }
+              /*if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
                 Navigator.pushNamed(context, LoginSuccessScreen.routeName);
-              }
+              }*/
             },
           ),
         ],

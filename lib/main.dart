@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'WTON Store',
       theme: theme(),
-      initialRoute: HomeScreen.routeName/*SplashScreen.routeName*/,
+      initialRoute: /*HomeScreen.routeName*/SplashScreen.routeName,
       routes: routes,
     );
   }

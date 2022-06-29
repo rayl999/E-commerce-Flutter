@@ -11,7 +11,6 @@ import 'home_header.dart';
 import 'popular_product.dart';
 import 'special_offers.dart';
 
-
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
@@ -29,7 +28,6 @@ class _BodyState extends State<Body> {
     super.initState();
   }
 
-
   getData() async {
     category = await CategoryRemote().getCat();
     product = await ProductRemote().getProduct();
@@ -37,10 +35,10 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     if (category == null || product == null) {
       getData();
     }
+    SizeConfig().init(context);
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
