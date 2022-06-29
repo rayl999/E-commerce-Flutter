@@ -16,9 +16,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'WTON Store',
+      title: 'Wotn Store',
       theme: theme(),
-      initialRoute: /*HomeScreen.routeName*/SplashScreen.routeName,
+      initialRoute: SplashScreen.routeName,
       routes: routes,
     );
   }

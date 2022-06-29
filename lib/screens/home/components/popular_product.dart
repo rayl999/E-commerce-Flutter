@@ -17,7 +17,7 @@ class PopularProducts extends StatelessWidget {
       children: [
         Padding(
           padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: SectionTitle(title: "Popular Products", press: () {}),
         ),
         SizedBox(height: getProportionateScreenWidth(20)),
@@ -27,7 +27,7 @@ class PopularProducts extends StatelessWidget {
             children: [
               ...List.generate(
                 products.length,
-                (index) {
+                    (index) {
                   if (true) {
                     return ProductCard(product: products[index]);
                   }
