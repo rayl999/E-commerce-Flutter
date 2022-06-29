@@ -25,9 +25,7 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 2), () {
-      getData();
-    });
+    getData();
   }
 
   getData() async {
@@ -53,19 +51,19 @@ class _BodyState extends State<Body> {
             category != null
                 ? Categories(category!.categories)
                 : const Center(
-              child: CircularProgressIndicator(),
-            ),
+                    child: CircularProgressIndicator(),
+                  ),
             const SpecialOffers(),
             SizedBox(height: getProportionateScreenWidth(30)),
             product != null
                 ? PopularProducts(product!.products)
                 : Center(
-              child: TextButton(
-                  onPressed: () async {
-                    await getData();
-                  },
-                  child: const CircularProgressIndicator()),
-            ),
+                    child: TextButton(
+                        onPressed: () async {
+                          await getData();
+                        },
+                        child: const CircularProgressIndicator()),
+                  ),
             SizedBox(height: getProportionateScreenWidth(30)),
           ],
         ),
