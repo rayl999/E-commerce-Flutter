@@ -33,11 +33,11 @@ class ProductDescription extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.all(getProportionateScreenWidth(15)),
             width: getProportionateScreenWidth(64),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: true
-                  ? const Color(0xFFFFE6E6)
-                  : const Color(0xFFF5F6F9),
-              borderRadius: const BorderRadius.only(
+                  ? Color(0xFFFFE6E6)
+                  : Color(0xFFF5F6F9),
+              borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20),
                 bottomLeft: Radius.circular(20),
               ),

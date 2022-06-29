@@ -51,12 +51,12 @@ class CategoryElement {
 
   String? name;
   String? description;
-  int? categoryTemplateId;
+  double? categoryTemplateId;
   String? metaKeywords;
   String? metaDescription;
   String? metaTitle;
-  int? parentCategoryId;
-  int? pageSize;
+  double? parentCategoryId;
+  double? pageSize;
   String? pageSizeOptions;
   String? priceRanges;
   bool? showOnHomePage;
@@ -64,7 +64,7 @@ class CategoryElement {
   bool? hasDiscountsApplied;
   bool? published;
   bool? deleted;
-  int? displayOrder;
+  double? displayOrder;
   DateTime? createdOnUtc;
   DateTime? updatedOnUtc;
   List<int>? roleIds;
@@ -72,7 +72,7 @@ class CategoryElement {
   List<int>? storeIds;
   Image? image;
   String? seName;
-  int? id;
+  double? id;
 
   factory CategoryElement.fromJson(Map<String, dynamic> json) =>
       CategoryElement(
@@ -97,7 +97,7 @@ class CategoryElement {
         roleIds: List<int>.from(json["role_ids"].map((x) => x)),
         discountIds: List<int>.from(json["discount_ids"].map((x) => x)),
         storeIds: List<int>.from(json["store_ids"].map((x) => x)),*/
-        image: Image.fromJson(json["image"])??Image(src: "",attachment: ""),
+        image: Image.fromJson(json["image"]),
         seName: json["se_name"] ?? "",
         id: json["id"]??-1,
       );

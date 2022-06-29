@@ -6,6 +6,7 @@ import 'package:shop_app/theme.dart';
 
 void main() {
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {

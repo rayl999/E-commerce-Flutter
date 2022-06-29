@@ -131,10 +131,10 @@ class ProductElement {
   String? metaDescription;
   String? metaTitle;
   bool? allowCustomerReviews;
-  int? approvedRatingSum;
-  int? notApprovedRatingSum;
-  int? approvedTotalReviews;
-  int? notApprovedTotalReviews;
+  double? approvedRatingSum;
+  double? notApprovedRatingSum;
+  double? approvedTotalReviews;
+  double? notApprovedTotalReviews;
   String? sku;
   String? manufacturerPartNumber;
   String? gtin;
@@ -144,32 +144,32 @@ class ProductElement {
   List<int>? requiredProductIds;
   bool? isDownload;
   bool? unlimitedDownloads;
-  int? maxNumberOfDownloads;
-  int? downloadExpirationDays;
+  double? maxNumberOfDownloads;
+  double? downloadExpirationDays;
   bool? hasSampleDownload;
   bool? hasUserAgreement;
   bool? isRecurring;
-  int? recurringCycleLength;
-  int? recurringTotalCycles;
+  double? recurringCycleLength;
+  double? recurringTotalCycles;
   bool? isRental;
-  int? rentalPriceLength;
+  double? rentalPriceLength;
   bool? isShipEnabled;
   bool? isFreeShipping;
   bool? shipSeparately;
-  int? additionalShippingCharge;
+  double? additionalShippingCharge;
   bool? isTaxExempt;
-  int? taxCategoryId;
+  double? taxCategoryId;
   bool? isTelecommunicationsOrBroadcastingOrElectronicServices;
   bool? useMultipleWarehouses;
-  int? manageInventoryMethodId;
-  int? stockQuantity;
+  double? manageInventoryMethodId;
+  double? stockQuantity;
   bool? displayStockAvailability;
   bool? displayStockQuantity;
-  int? minStockQuantity;
-  int? notifyAdminForQuantityBelow;
+  double? minStockQuantity;
+  double? notifyAdminForQuantityBelow;
   bool? allowBackInStockSubscriptions;
-  int? orderMinimumQuantity;
-  int? orderMaximumQuantity;
+  double? orderMinimumQuantity;
+  double? orderMaximumQuantity;
   String? allowedQuantities;
   bool? allowAddingOnlyExistingAttributeCombinations;
   bool? disableBuyButton;
@@ -177,33 +177,33 @@ class ProductElement {
   bool? availableForPreOrder;
   DateTime? preOrderAvailabilityStartDateTimeUtc;
   bool? callForPrice;
-  int? price;
-  int? oldPrice;
-  int? productCost;
-  int? specialPrice;
+  double? price;
+  double? oldPrice;
+  double? productCost;
+  double? specialPrice;
   DateTime? specialPriceStartDateTimeUtc;
   DateTime? specialPriceEndDateTimeUtc;
   bool? customerEntersPrice;
-  int? minimumCustomerEnteredPrice;
-  int? maximumCustomerEnteredPrice;
+  double? minimumCustomerEnteredPrice;
+  double? maximumCustomerEnteredPrice;
   bool? basepriceEnabled;
-  int? basepriceAmount;
-  int? basepriceBaseAmount;
+  double? basepriceAmount;
+  double? basepriceBaseAmount;
   bool? hasTierPrices;
   bool? hasDiscountsApplied;
-  int? weight;
-  int? length;
-  int? width;
-  int? height;
+  double? weight;
+  double? length;
+  double? width;
+  double? height;
   DateTime? availableStartDateTimeUtc;
   DateTime? availableEndDateTimeUtc;
-  int? displayOrder;
+  double? displayOrder;
   bool? published;
   bool? deleted;
   DateTime? createdOnUtc;
   DateTime? updatedOnUtc;
   String? productType;
-  int? parentGroupedProductId;
+  double? parentGroupedProductId;
   List<int>? roleIds;
   List<int>? discountIds;
   List<int>? storeIds;
@@ -214,7 +214,7 @@ class ProductElement {
   List<ProductSpecificationAttribute>? productSpecificationAttributes;
   List<int>? associatedProductIds;
   List<String>? tags;
-  int? vendorId;
+  double? vendorId;
   String? seName;
   int id;
 
@@ -459,16 +459,16 @@ class Attribute {
     this.id,
   });
 
-  int? productAttributeId;
+  double? productAttributeId;
   String? productAttributeName;
   String? textPrompt;
   bool? isRequired;
-  int? attributeControlTypeId;
-  int? displayOrder;
+  double? attributeControlTypeId;
+  double? displayOrder;
   String? defaultValue;
   String? attributeControlTypeName;
   List<AttributeValue>? attributeValues;
-  int? id;
+  double? id;
 
   factory Attribute.fromJson(Map<String, dynamic> json) => Attribute(
         productAttributeId: json["product_attribute_id"] ?? -1,
@@ -517,20 +517,20 @@ class AttributeValue {
     this.id,
   });
 
-  int? typeId;
-  int? associatedProductId;
+  double? typeId;
+  double? associatedProductId;
   String? name;
   String? colorSquaresRgb;
   ImageSquaresImage? imageSquaresImage;
-  int? priceAdjustment;
-  int? weightAdjustment;
-  int? cost;
-  int? quantity;
+  double? priceAdjustment;
+  double? weightAdjustment;
+  double? cost;
+  double? quantity;
   bool? isPreSelected;
-  int? displayOrder;
-  int? productImageId;
+  double? displayOrder;
+  double? productImageId;
   String? type;
-  int? id;
+  double? id;
 
   factory AttributeValue.fromJson(Map<String, dynamic> json) => AttributeValue(
         typeId: json["type_id"] ?? -1,
@@ -598,9 +598,9 @@ class Image {
     this.attachment,
   });
 
-  int? id;
-  int? pictureId;
-  int? position;
+  double? id;
+  double? pictureId;
+  double? position;
   String? src;
   String? attachment;
 
@@ -634,15 +634,15 @@ class ProductAttributeCombination {
     this.id,
   });
 
-  int? productId;
+  double? productId;
   String? attributesXml;
-  int? stockQuantity;
+  double? stockQuantity;
   String? sku;
   String? manufacturerPartNumber;
   String? gtin;
-  int? overriddenPrice;
-  int? pictureId;
-  int? id;
+  double? overriddenPrice;
+  double? pictureId;
+  double? id;
 
   factory ProductAttributeCombination.fromJson(Map<String, dynamic> json) =>
       ProductAttributeCombination(
@@ -684,16 +684,16 @@ class ProductSpecificationAttribute {
     this.id,
   });
 
-  int? productId;
-  int? attributeTypeId;
-  int? specificationAttributeOptionId;
+  double? productId;
+  double? attributeTypeId;
+  double? specificationAttributeOptionId;
   String? customValue;
   bool? allowFiltering;
   bool? showOnProductPage;
-  int? displayOrder;
+  double? displayOrder;
   String? attributeType;
   SpecificationAttributeOption? specificationAttributeOption;
-  int? id;
+  double? id;
 
   factory ProductSpecificationAttribute.fromJson(Map<String, dynamic> json) =>
       ProductSpecificationAttribute(
@@ -735,11 +735,11 @@ class SpecificationAttributeOption {
     this.id,
   });
 
-  int? specificationAttributeId;
+  double? specificationAttributeId;
   String? name;
   String? colorSquaresRgb;
-  int? displayOrder;
-  int? id;
+  double? displayOrder;
+  double? id;
 
   factory SpecificationAttributeOption.fromJson(Map<String, dynamic> json) =>
       SpecificationAttributeOption(

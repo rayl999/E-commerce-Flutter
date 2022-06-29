@@ -11,6 +11,7 @@ import 'home_header.dart';
 import 'popular_product.dart';
 import 'special_offers.dart';
 
+
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
@@ -20,40 +21,26 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   Category? category;
-  bool isLoaded = false;
-
   Product? product;
-  bool isLoaded2 = false;
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     getData();
+    super.initState();
   }
+
 
   getData() async {
     category = await CategoryRemote().getCat();
     product = await ProductRemote().getProduct();
-    if (category != null) {
-      setState(() {
-        isLoaded = true;
-      });
-    }
-    if (product != null) {
-      setState(() {
-        isLoaded2 = true;
-      });
-
-    }
-    ProductElement xxxx = product!.products[0];;
-    //print(category?.categories?.length);
-    /*List<CategoryElement>? v = category!.categories;
-    List<ProductElement> t = product!.products;*/
   }
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    if (category == null || product == null) {
+      getData();
+    }
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
@@ -62,10 +49,22 @@ class _BodyState extends State<Body> {
             const HomeHeader(),
             SizedBox(height: getProportionateScreenWidth(10)),
             const DiscountBanner(),
-            Categories(category!.categories),
+            category != null
+                ? Categories(category!.categories)
+                : const Center(
+                    child: CircularProgressIndicator(),
+                  ),
             const SpecialOffers(),
             SizedBox(height: getProportionateScreenWidth(30)),
-            PopularProducts(product!.products),
+            product != null
+                ? PopularProducts(product!.products)
+                : Center(
+                    child: TextButton(
+                        onPressed: () async {
+                          await getData();
+                        },
+                        child: const CircularProgressIndicator()),
+                  ),
             SizedBox(height: getProportionateScreenWidth(30)),
           ],
         ),
