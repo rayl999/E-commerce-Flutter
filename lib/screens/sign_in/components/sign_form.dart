@@ -6,13 +6,17 @@ import 'package:shop_app/models2/token.dart';
 import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:shop_app/screens/login_success/login_success_screen.dart';
 import 'package:shop_app/services/loginRemote.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:bot_toast/bot_toast.dart';
 
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
 class SignForm extends StatefulWidget {
-  const SignForm({Key? key}) : super(key: key);
+  BuildContext context;
+
+  SignForm({Key? key, required this.context}) : super(key: key);
 
   @override
   SignFormState createState() => SignFormState();
@@ -78,14 +82,21 @@ class SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Continue",
-            press: () async{
+            press: () async {
               _formKey.currentState!.save();
-              Token t = await LoginRemote().getAccess(email,password);
-              print(t.customerId);
-              if(t.accessToken!.isNotEmpty){
-                KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+              KeyboardUtil.hideKeyboard(context);
+              try {
+                Token t = await LoginRemote().getAccess(email, password);
+                print(t.customerId);
+                if (t.accessToken!.isNotEmpty) {
+                  Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                }
+              } catch (e) {
+                print(e);
+                showToast("wrong information",
+                    context: context, animation: StyledToastAnimation.scale);
               }
+
               /*if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen

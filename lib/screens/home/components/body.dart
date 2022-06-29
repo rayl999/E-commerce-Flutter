@@ -11,7 +11,6 @@ import 'home_header.dart';
 import 'popular_product.dart';
 import 'special_offers.dart';
 
-
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
@@ -26,13 +25,10 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     super.initState();
-
-    Future.delayed(Duration(seconds: 2), (){
-      print("Executed after 5 seconds");
+    Future.delayed(Duration(seconds: 2), () {
       getData();
     });
   }
-
 
   getData() async {
     category = await CategoryRemote().getCat();
