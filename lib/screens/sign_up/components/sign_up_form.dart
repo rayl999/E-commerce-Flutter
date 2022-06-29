@@ -13,9 +13,13 @@ import 'package:shop_app/screens/splash/splash_screen.dart';
 
 import '../../../constants.dart';
 import '../../../helper/keyboard.dart';
+import '../../../models2/token.dart';
 import '../../../services/checkCustomerRemote.dart';
+import '../../../services/loginRemote.dart';
 import '../../../size_config.dart';
 import 'package:http/http.dart' as http;
+
+import '../../login_success/login_success_screen.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -84,6 +88,17 @@ class SignUpFormState extends State<SignUpForm> {
               }
               if (!isExist) {
                 register();
+                //from here need check
+                try {
+                  Token t = await LoginRemote().getAccess(email, password);
+                  if (t.accessToken!.isNotEmpty) {
+                    Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                  }
+                } catch (e) {
+                  print(e);
+                  showToast("try to sign in later",
+                      context: context, animation: StyledToastAnimation.scale);
+                }
               }
             },
           ),
