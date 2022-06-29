@@ -11,7 +11,7 @@ class ColorDots extends StatelessWidget {
     required this.product,
   }) : super(key: key);
 
-  final Product product;
+  final ProxyElement product;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,13 @@ class ColorDots extends StatelessWidget {
           EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
       child: Row(
         children: [
-          ...List.generate(
-            product.colors.length,
+          /*...List.generate(
+            2,
             (index) => ColorDot(
               color: product.colors[index],
               isSelected: index == selectedColor,
             ),
-          ),
+          ),*/
           const Spacer(),
           RoundedIconBtn(
             icon: Icons.remove,

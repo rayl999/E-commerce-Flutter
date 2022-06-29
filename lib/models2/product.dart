@@ -29,8 +29,8 @@ class ProductElement {
   ProductElement({
     this.visibleIndividually,
     required this.name,
-    required this.shortDescription,
-    required this.fullDescription,
+    this.shortDescription,
+    this.fullDescription,
     this.showOnHomePage,
     this.metaKeywords,
     this.metaDescription,
@@ -120,12 +120,12 @@ class ProductElement {
     this.associatedProductIds,
     this.tags,
     this.vendorId,
-    required this.seName,
+    this.seName,
     required this.id,
   });
 
-  String shortDescription;
-  String fullDescription;
+  String? shortDescription;
+  String? fullDescription;
   bool? showOnHomePage;
   String? metaKeywords;
   String? metaDescription;
@@ -177,7 +177,7 @@ class ProductElement {
   bool? availableForPreOrder;
   DateTime? preOrderAvailabilityStartDateTimeUtc;
   bool? callForPrice;
-  int price;
+  int? price;
   int? oldPrice;
   int? productCost;
   int? specialPrice;
@@ -215,38 +215,38 @@ class ProductElement {
   List<int>? associatedProductIds;
   List<String>? tags;
   int? vendorId;
-  String seName;
+  String? seName;
   int id;
 
   factory ProductElement.fromJson(Map<String, dynamic> json) => ProductElement(
-        //visibleIndividually: json["visible_individually"],
-        name: json["name"],
+        visibleIndividually: json["visible_individually"] ?? true,
+        name: json["name"] ?? "",
         shortDescription: json["short_description"] ?? "",
         fullDescription: json["full_description"] ?? "",
-        /*showOnHomePage: json["show_on_home_page"],
-        metaKeywords: json["meta_keywords"],
-        metaDescription: json["meta_description"],
-        metaTitle: json["meta_title"],
-        allowCustomerReviews: json["allow_customer_reviews"],
-        approvedRatingSum: json["approved_rating_sum"],
-        notApprovedRatingSum: json["not_approved_rating_sum"],
-        approvedTotalReviews: json["approved_total_reviews"],
-        notApprovedTotalReviews: json["not_approved_total_reviews"],
-        sku: json["sku"],
-        manufacturerPartNumber: json["manufacturer_part_number"],
-        gtin: json["gtin"],
-        isGiftCard: json["is_gift_card"],
-        requireOtherProducts: json["require_other_products"],
+        /*showOnHomePage: json["show_on_home_page"] ?? true,
+        metaKeywords: json["meta_keywords"] ?? "",
+        metaDescription: json["meta_description"] ?? "",
+        metaTitle: json["meta_title"] ?? "",
+        allowCustomerReviews: json["allow_customer_reviews"] ?? true,
+        approvedRatingSum: json["approved_rating_sum"] ?? 0,
+        notApprovedRatingSum: json["not_approved_rating_sum"] ?? 0,
+        approvedTotalReviews: json["approved_total_reviews"] ?? 0,
+        notApprovedTotalReviews: json["not_approved_total_reviews"] ?? 0,
+        sku: json["sku"] ?? "",
+        manufacturerPartNumber: json["manufacturer_part_number"] ?? "",
+        gtin: json["gtin"] ?? "",
+        isGiftCard: json["is_gift_card"] ?? true,
+        requireOtherProducts: json["require_other_products"] ?? true,
         automaticallyAddRequiredProducts:
-            json["automatically_add_required_products"],
+            json["automatically_add_required_products"] ?? true,
         requiredProductIds:
             List<int>.from(json["required_product_ids"].map((x) => x)),
-        isDownload: json["is_download"],
-        unlimitedDownloads: json["unlimited_downloads"],
-        maxNumberOfDownloads: json["max_number_of_downloads"],
-        downloadExpirationDays: json["download_expiration_days"],
-        hasSampleDownload: json["has_sample_download"],
-        hasUserAgreement: json["has_user_agreement"],
+        isDownload: json["is_download"] ?? false,
+        unlimitedDownloads: json["unlimited_downloads"] ?? false,
+        maxNumberOfDownloads: json["max_number_of_downloads"] ?? 0,
+        downloadExpirationDays: json["download_expiration_days"] ?? 0,
+        hasSampleDownload: json["has_sample_download"] ?? false,*/
+        /*hasUserAgreement: json["has_user_agreement"],
         isRecurring: json["is_recurring"],
         recurringCycleLength: json["recurring_cycle_length"],
         recurringTotalCycles: json["recurring_total_cycles"],
@@ -329,10 +329,10 @@ class ProductElement {
             List<int>.from(json["associated_product_ids"].map((x) => x)),
         tags: List<String>.from(json["tags"].map((x) => x)),
         vendorId: json["vendor_id"],*/
-        seName: json["se_name"],
+        seName: json["se_name"] ?? "",
         images: List<Image>.from(json["images"].map((x) => Image.fromJson(x))),
-        id: json["id"],
-        price: json["price"],
+        id: json["id"] ?? 0,
+        price: json["price"] ?? -1,
       );
 
   Map<String, dynamic> toJson() => {
@@ -471,17 +471,17 @@ class Attribute {
   int? id;
 
   factory Attribute.fromJson(Map<String, dynamic> json) => Attribute(
-        productAttributeId: json["product_attribute_id"],
-        productAttributeName: json["product_attribute_name"],
-        textPrompt: json["text_prompt"],
-        isRequired: json["is_required"],
-        attributeControlTypeId: json["attribute_control_type_id"],
-        displayOrder: json["display_order"],
-        defaultValue: json["default_value"],
+        productAttributeId: json["product_attribute_id"] ?? -1,
+        productAttributeName: json["product_attribute_name"] ?? "",
+        textPrompt: json["text_prompt"] ?? "",
+        isRequired: json["is_required"] ?? false,
+        attributeControlTypeId: json["attribute_control_type_id"] ?? -1,
+        displayOrder: json["display_order"] ?? -1,
+        defaultValue: json["default_value"] ?? "",
         attributeControlTypeName: json["attribute_control_type_name"],
         attributeValues: List<AttributeValue>.from(
             json["attribute_values"].map((x) => AttributeValue.fromJson(x))),
-        id: json["id"],
+        id: json["id"] ?? -1,
       );
 
   Map<String, dynamic> toJson() => {
@@ -533,21 +533,21 @@ class AttributeValue {
   int? id;
 
   factory AttributeValue.fromJson(Map<String, dynamic> json) => AttributeValue(
-        typeId: json["type_id"],
-        associatedProductId: json["associated_product_id"],
-        name: json["name"],
-        colorSquaresRgb: json["color_squares_rgb"],
+        typeId: json["type_id"] ?? -1,
+        associatedProductId: json["associated_product_id"] ?? -1,
+        name: json["name"] ?? "",
+        colorSquaresRgb: json["color_squares_rgb"] ?? "",
         imageSquaresImage:
             ImageSquaresImage.fromJson(json["image_squares_image"]),
-        priceAdjustment: json["price_adjustment"],
-        weightAdjustment: json["weight_adjustment"],
-        cost: json["cost"],
-        quantity: json["quantity"],
-        isPreSelected: json["is_pre_selected"],
-        displayOrder: json["display_order"],
-        productImageId: json["product_image_id"],
-        type: json["type"],
-        id: json["id"],
+        priceAdjustment: json["price_adjustment"] ?? -1,
+        weightAdjustment: json["weight_adjustment"] ?? -1,
+        cost: json["cost"] ?? -1,
+        quantity: json["quantity"] ?? 0,
+        isPreSelected: json["is_pre_selected"] ?? false,
+        displayOrder: json["display_order"] ?? -1,
+        productImageId: json["product_image_id"] ?? 0,
+        type: json["type"] ?? "",
+        id: json["id"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {
@@ -579,8 +579,8 @@ class ImageSquaresImage {
 
   factory ImageSquaresImage.fromJson(Map<String, dynamic> json) =>
       ImageSquaresImage(
-        src: json["src"],
-        attachment: json["attachment"],
+        src: json["src"] ?? "",
+        attachment: json["attachment"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -605,11 +605,11 @@ class Image {
   String? attachment;
 
   factory Image.fromJson(Map<String, dynamic> json) => Image(
-        id: json["id"],
-        pictureId: json["picture_id"],
-        position: json["position"],
-        src: json["src"],
-        attachment: json["attachment"],
+        id: json["id"] ?? 0,
+        pictureId: json["picture_id"] ?? 0,
+        position: json["position"] ?? 0,
+        src: json["src"] ?? "",
+        attachment: json["attachment"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -646,15 +646,15 @@ class ProductAttributeCombination {
 
   factory ProductAttributeCombination.fromJson(Map<String, dynamic> json) =>
       ProductAttributeCombination(
-        productId: json["product_id"],
-        attributesXml: json["attributes_xml"],
-        stockQuantity: json["stock_quantity"],
-        sku: json["sku"],
-        manufacturerPartNumber: json["manufacturer_part_number"],
-        gtin: json["gtin"],
-        overriddenPrice: json["overridden_price"],
-        pictureId: json["picture_id"],
-        id: json["id"],
+        productId: json["product_id"] ?? 0,
+        attributesXml: json["attributes_xml"] ?? "",
+        stockQuantity: json["stock_quantity"] ?? "",
+        sku: json["sku"] ?? "",
+        manufacturerPartNumber: json["manufacturer_part_number"] ?? "",
+        gtin: json["gtin"] ?? "",
+        overriddenPrice: json["overridden_price"] ?? "",
+        pictureId: json["picture_id"] ?? 0,
+        id: json["id"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {
@@ -697,18 +697,18 @@ class ProductSpecificationAttribute {
 
   factory ProductSpecificationAttribute.fromJson(Map<String, dynamic> json) =>
       ProductSpecificationAttribute(
-        productId: json["product_id"],
-        attributeTypeId: json["attribute_type_id"],
+        productId: json["product_id"] ?? 0,
+        attributeTypeId: json["attribute_type_id"] ?? 0,
         specificationAttributeOptionId:
-            json["specification_attribute_option_id"],
-        customValue: json["custom_value"],
-        allowFiltering: json["allow_filtering"],
-        showOnProductPage: json["show_on_product_page"],
-        displayOrder: json["display_order"],
-        attributeType: json["attribute_type"],
+            json["specification_attribute_option_id"] ?? "",
+        customValue: json["custom_value"] ?? "",
+        allowFiltering: json["allow_filtering"] ?? "",
+        showOnProductPage: json["show_on_product_page"] ?? "",
+        displayOrder: json["display_order"] ?? "",
+        attributeType: json["attribute_type"] ?? "",
         specificationAttributeOption: SpecificationAttributeOption.fromJson(
             json["specification_attribute_option"]),
-        id: json["id"],
+        id: json["id"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {
@@ -743,11 +743,11 @@ class SpecificationAttributeOption {
 
   factory SpecificationAttributeOption.fromJson(Map<String, dynamic> json) =>
       SpecificationAttributeOption(
-        specificationAttributeId: json["specification_attribute_id"],
-        name: json["name"],
-        colorSquaresRgb: json["color_squares_rgb"],
-        displayOrder: json["display_order"],
-        id: json["id"],
+        specificationAttributeId: json["specification_attribute_id"] ?? "",
+        name: json["name"] ?? "",
+        colorSquaresRgb: json["color_squares_rgb"] ?? "",
+        displayOrder: json["display_order"] ?? "",
+        id: json["id"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {

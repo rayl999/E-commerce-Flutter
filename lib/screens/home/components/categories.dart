@@ -1,10 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../../models2/Category.dart';
+import 'package:get/get.dart';
+import '../../../models2/Category.dart' as c;
 import '../../../size_config.dart';
 
 class Categories extends StatelessWidget {
-  List<CategoryElement>? category;
+  List<c.CategoryElement>? category;
 
   Categories(this.category, {Key? key}) : super(key: key);
 
@@ -18,9 +20,11 @@ class Categories extends StatelessWidget {
       {"icon": "assets/icons/Discover.svg", "text": "More"},
     ];*/
     List<Map<String, dynamic>> categories = [];
-    for (CategoryElement x in category!) {
+    String? link;
+    for (c.CategoryElement x in category!) {
+      link = x.image!.src!.isEmpty?"assets/icons/Flash Icon.svg":x.image!.src;
       categories
-          .add({"icon": "assets/icons/Flash Icon.svg", "text": "${x.name}"});
+          .add({"icon": "$link", "text": "${x.name}"});
     }
     return Padding(
       padding: EdgeInsets.all(getProportionateScreenWidth(20)),
@@ -67,7 +71,7 @@ class CategoryCard extends StatelessWidget {
                 color: const Color(0xFFFFECDF),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: SvgPicture.asset(icon!),
+              child: icon!.substring(icon!.length-5)=="svg"?SvgPicture.asset(icon!):Image.network(icon!),
             ),
             const SizedBox(height: 5),
             Text(text!, textAlign: TextAlign.center)

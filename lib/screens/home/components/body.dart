@@ -44,7 +44,10 @@ class _BodyState extends State<Body> {
       setState(() {
         isLoaded2 = true;
       });
+
     }
+    ProductElement xxxx = product!.products[0];;
+    //print(category?.categories?.length);
     /*List<CategoryElement>? v = category!.categories;
     List<ProductElement> t = product!.products;*/
   }

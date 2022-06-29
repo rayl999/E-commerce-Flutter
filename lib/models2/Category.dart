@@ -72,34 +72,34 @@ class CategoryElement {
   List<int>? storeIds;
   Image? image;
   String? seName;
-  int id;
+  int? id;
 
   factory CategoryElement.fromJson(Map<String, dynamic> json) =>
       CategoryElement(
-        name: json["name"],
+        name: json["name"] ?? "",
         description: json["description"] ?? "",
-        /*categoryTemplateId: json["category_template_id"],
-        metaKeywords: json["meta_keywords"],
-        metaDescription: json["meta_description"],
-        metaTitle: json["meta_title"],
-        parentCategoryId: json["parent_category_id"],
-        pageSize: json["page_size"],
-        pageSizeOptions: json["page_size_options"],
-        priceRanges: json["price_ranges"],
-        showOnHomePage: json["show_on_home_page"],
-        includeInTopMenu: json["include_in_top_menu"],
-        hasDiscountsApplied: json["has_discounts_applied"],
-        published: json["published"],
-        deleted: json["deleted"],
-        displayOrder: json["display_order"],
-        createdOnUtc: DateTime.parse(json["created_on_utc"]),
-        updatedOnUtc: DateTime.parse(json["updated_on_utc"]),
+        /*categoryTemplateId: json["category_template_id"] ?? 0,
+        metaKeywords: json["meta_keywords"] ?? "",
+        metaDescription: json["meta_description"] ?? "",
+        metaTitle: json["meta_title"] ?? "",
+        parentCategoryId: json["parent_category_id"] ?? 0,
+        pageSize: json["page_size"] ?? 0,
+        pageSizeOptions: json["page_size_options"] ?? "",
+        priceRanges: json["price_ranges"] ?? "",
+        showOnHomePage: json["show_on_home_page"] ?? true,
+        includeInTopMenu: json["include_in_top_menu"] ?? true,
+        hasDiscountsApplied: json["has_discounts_applied"] ?? true,
+        published: json["published"] ?? true,
+        deleted: json["deleted"] ?? false,
+        displayOrder: json["display_order"] ?? -1,
+        createdOnUtc: DateTime.parse(json["created_on_utc"]) ?? DateTime(2022),
+        updatedOnUtc: DateTime.parse(json["updated_on_utc"]) ?? DateTime(2022),
         roleIds: List<int>.from(json["role_ids"].map((x) => x)),
         discountIds: List<int>.from(json["discount_ids"].map((x) => x)),
-        storeIds: List<int>.from(json["store_ids"].map((x) => x)),
-        image: Image.fromJson(json["image"]),*/
+        storeIds: List<int>.from(json["store_ids"].map((x) => x)),*/
+        image: Image.fromJson(json["image"])??Image(src: "",attachment: ""),
         seName: json["se_name"] ?? "",
-        id: json["id"],
+        id: json["id"]??-1,
       );
 
   Map<String, dynamic> toJson() => {
@@ -140,8 +140,8 @@ class Image {
   String? attachment;
 
   factory Image.fromJson(Map<String, dynamic> json) => Image(
-        src: json["src"],
-        attachment: json["attachment"],
+        src: json["src"] ?? "",
+        attachment: json["attachment"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {

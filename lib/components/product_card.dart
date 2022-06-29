@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shop_app/models/Product.dart';
+
 import 'package:shop_app/screens/details/details_screen.dart';
 
 import '../constants.dart';
+import '../models2/product.dart' as p;
 import '../size_config.dart';
 
 class ProductCard extends StatelessWidget {
@@ -15,7 +16,7 @@ class ProductCard extends StatelessWidget {
   }) : super(key: key);
 
   final double width, aspectRetio;
-  final Product product;
+  final p.ProductElement product;
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +43,13 @@ class ProductCard extends StatelessWidget {
                   ),
                   child: Hero(
                     tag: product.id.toString(),
-                    child: Image.asset(product.images[0]),
+                    child: Image.network(product.images[0].src??""),
                   ),
                 ),
               ),
               const SizedBox(height: 10),
               Text(
-                product.title,
+                product.name??"",
                 style: const TextStyle(color: Colors.black),
                 maxLines: 2,
               ),
@@ -71,14 +72,14 @@ class ProductCard extends StatelessWidget {
                       height: getProportionateScreenWidth(28),
                       width: getProportionateScreenWidth(28),
                       decoration: BoxDecoration(
-                        color: product.isFavourite
+                        color: true
                             ? kPrimaryColor.withOpacity(0.15)
                             : kSecondaryColor.withOpacity(0.1),
                         shape: BoxShape.circle,
                       ),
                       child: SvgPicture.asset(
                         "assets/icons/Heart Icon_2.svg",
-                        color: product.isFavourite
+                        color: true
                             ? const Color(0xFFFF4848)
                             : const Color(0xFFDBDEE4),
                       ),

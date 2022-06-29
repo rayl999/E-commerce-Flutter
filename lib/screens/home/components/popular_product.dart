@@ -26,10 +26,10 @@ class PopularProducts extends StatelessWidget {
           child: Row(
             children: [
               ...List.generate(
-                demoProducts.length,
+                products.length,
                 (index) {
-                  if (demoProducts[index].isPopular) {
-                    return ProductCard(product: demoProducts[index]);
+                  if (true) {
+                    return ProductCard(product: products[index]);
                   }
 
                   return const SizedBox
